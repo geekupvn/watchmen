@@ -8,25 +8,20 @@ services:
         - ./redis.conf:/usr/local/etc/redis/redis.conf
         - .stack/data:/data
   watchmen-web:
+    image: gcr.geekup.vn/tools/watchmen-web:latest
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-web-server
     ports:
-        - "80:3000"
+        - "3000:3000"
     links:
         - redis
     env_file: docker-compose.env
-    volumes:
-        - /Users/hoanganh/Desktop/Projects/WatchMen:/watchmen
-    command: "nodemon -L run-web-server.js"
-
   watchmen-monitor:
+    image: gcr.geekup.vn/tools/watchmen-monitor:latest
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-monitor-server
     links:
         - redis
     env_file: docker-compose.env
-    volumes:
-        - ./:/watchmen
-    command: "nodemon -L run-web-server.js"
