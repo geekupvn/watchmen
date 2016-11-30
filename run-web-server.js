@@ -14,6 +14,7 @@ program
     .option('-e, --env [env]', 'Storage environment key', process.env.NODE_ENV || 'development')
     .parse(process.argv);
 
+
 var storage = storageFactory.getStorageInstance(program.env);
 if (!storage) {
   console.error('Error creating storage for env: ', program.env);

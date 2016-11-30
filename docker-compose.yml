@@ -17,7 +17,7 @@ services:
         - redis
     env_file: docker-compose.env
     volumes:
-        - /Users/hoanganh/Desktop/Projects/WatchMen:/watchmen
+        - ./:/watchmen
     command: "nodemon -L run-web-server.js"
 
   watchmen-monitor:
@@ -29,4 +29,4 @@ services:
     env_file: docker-compose.env
     volumes:
         - ./:/watchmen
-    command: "nodemon -L run-web-server.js"
+    command: "nodemon -L run-monitor-server.js"
